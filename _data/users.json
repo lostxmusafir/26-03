@@ -1,0 +1,41 @@
+[
+    {
+        "username": "DreamAdmin",
+        "email": "admin@dream.com",
+        "password": "123456",
+        "gamingAlias": "Dream",
+        "role": "admin",
+        "valorantRank": "Radiant",
+        "matchesPlayed": 500,
+        "wins": 350,
+        "losses": 150,
+        "kills": 2500,
+        "deaths": 800
+    },
+    {
+        "username": "ShadowStrike",
+        "email": "shadow@strike.com",
+        "password": "shadow123",
+        "gamingAlias": "Shadow",
+        "role": "player",
+        "valorantRank": "Immortal",
+        "matchesPlayed": 300,
+        "wins": 180,
+        "losses": 120,
+        "kills": 1500,
+        "deaths": 600
+    },
+    {
+        "username": "PhantomAce",
+        "email": "phantom@ace.com",
+        "password": "phantom123",
+        "gamingAlias": "Phantom",
+        "role": "player",
+        "valorantRank": "Diamond",
+        "matchesPlayed": 200,
+        "wins": 120,
+        "losses": 80,
+        "kills": 1000,
+        "deaths": 400
+    }
+]
