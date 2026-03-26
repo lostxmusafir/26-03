@@ -1,19 +1,13 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const connectDB = require('./config/db');
 const helmet = require('helmet');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-const connectDB = require('./config/db');
-
-// Load environment variables
-dotenv.config();
-
-// Connect to Database
-connectDB();
+const errorHandler = require('./middleware/error');
 
 // Route files
 const authRoutes = require('./routes/auth');
@@ -22,13 +16,22 @@ const tournamentRoutes = require('./routes/tournamentRoutes');
 const matchRoutes = require('./routes/matchRoutes');
 const userRoutes = require('./routes/userRoutes');
 
+// Load environment variables
+dotenv.config();
+
+// Connect to Database
+connectDB();
+
 const app = express();
 
-// Security middleware
+// Body parser middleware to accept JSON data
+app.use(express.json());
+
+// Security Middleware
 app.use(helmet());
 app.use(cors());
 app.use(mongoSanitize());
-app.use(xss());
+// xss-clean removed due to Express compatibility issues
 
 // Rate limiting
 const limiter = rateLimit({
@@ -37,10 +40,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Body parser middleware to accept JSON data
-app.use(express.json());
-
-// Swagger UI
+// Swagger API Docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Mount routers
@@ -49,10 +49,6 @@ app.use('/api/teams', teamRoutes);
 app.use('/api/tournaments', tournamentRoutes);
 app.use('/api/matches', matchRoutes);
 app.use('/api/users', userRoutes);
-
-// Error handler middleware (must be after routes)
-const errorHandler = require('./middleware/error');
-app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
@@ -63,6 +59,9 @@ app.get('/', (req, res) => {
         message: "Welcome to the E-sports Tournament API. Server is live!" 
     });
 });
+
+// Error Handler Middleware (Must be at the end)
+app.use(errorHandler);
 
 // Start the server
 app.listen(PORT, () => {
