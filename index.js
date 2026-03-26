@@ -10,6 +10,8 @@ connectDB();
 
 // Route files
 const authRoutes = require('./routes/auth');
+const teamRoutes = require('./routes/teamRoutes');
+const tournamentRoutes = require('./routes/tournamentRoutes');
 
 const app = express();
 
@@ -18,6 +20,8 @@ app.use(express.json());
 
 // Mount routers
 app.use('/api/auth', authRoutes);
+app.use('/api/teams', teamRoutes);
+app.use('/api/tournaments', tournamentRoutes);
 
 const PORT = process.env.PORT || 5000;
 
