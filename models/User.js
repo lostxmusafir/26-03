@@ -33,6 +33,26 @@ const UserSchema = new mongoose.Schema({
         enum: ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Ascendant', 'Immortal', 'Radiant'],
         default: 'Iron'
     },
+    matchesPlayed: {
+        type: Number,
+        default: 0
+    },
+    wins: {
+        type: Number,
+        default: 0
+    },
+    losses: {
+        type: Number,
+        default: 0
+    },
+    kills: {
+        type: Number,
+        default: 0
+    },
+    deaths: {
+        type: Number,
+        default: 0
+    },
     createdAt: {
         type: Date,
         default: Date.now
