@@ -5,6 +5,8 @@ const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 const connectDB = require('./config/db');
 
 // Load environment variables
@@ -37,6 +39,9 @@ app.use(limiter);
 
 // Body parser middleware to accept JSON data
 app.use(express.json());
+
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Mount routers
 app.use('/api/auth', authRoutes);
