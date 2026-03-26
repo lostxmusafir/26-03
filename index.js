@@ -27,11 +27,10 @@ const app = express();
 // Body parser middleware to accept JSON data
 app.use(express.json());
 
-// Security Middleware
+// Security Middleware (Removed xss-clean to fix getter bug)
 app.use(helmet());
 app.use(cors());
 app.use(mongoSanitize());
-// xss-clean removed due to Express compatibility issues
 
 // Rate limiting
 const limiter = rateLimit({
