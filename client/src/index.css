@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gaming-dark text-gaming-gray antialiased selection:bg-gaming-red selection:text-white;
+  }
+}
+
+/* Custom scrollbar for gaming vibe */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1923; 
+}
+::-webkit-scrollbar-thumb {
+  background: #ff4655; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e03e4d; 
+}
