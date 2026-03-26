@@ -27,10 +27,9 @@ const app = express();
 // Body parser middleware to accept JSON data
 app.use(express.json());
 
-// Security Middleware (Removed xss-clean to fix getter bug)
+// Security Middleware (Removed xss-clean and mongoSanitize to fix getter bug)
 app.use(helmet());
 app.use(cors());
-app.use(mongoSanitize());
 
 // Rate limiting
 const limiter = rateLimit({
