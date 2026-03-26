@@ -1,5 +1,10 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const helmet = require('helmet');
+const cors = require('cors');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 
 // Load environment variables
@@ -16,6 +21,19 @@ const matchRoutes = require('./routes/matchRoutes');
 
 const app = express();
 
+// Security middleware
+app.use(helmet());
+app.use(cors());
+app.use(mongoSanitize());
+app.use(xss());
+
+// Rate limiting
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 mins
+    max: 100
+});
+app.use(limiter);
+
 // Body parser middleware to accept JSON data
 app.use(express.json());
 
@@ -24,6 +42,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/tournaments', tournamentRoutes);
 app.use('/api/matches', matchRoutes);
+
+// Error handler middleware (must be after routes)
+const errorHandler = require('./middleware/error');
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
