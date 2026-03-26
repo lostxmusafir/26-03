@@ -1,13 +1,23 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const connectDB = require('./config/db');
 
 // Load environment variables
 dotenv.config();
+
+// Connect to Database
+connectDB();
+
+// Route files
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
 // Body parser middleware to accept JSON data
 app.use(express.json());
+
+// Mount routers
+app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 5000;
 
