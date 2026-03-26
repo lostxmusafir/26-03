@@ -1,6 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-gaming-dark: #0f1923;
+  --color-gaming-red: #ff4655;
+  --color-gaming-gray: #ece8e1;
+  --color-gaming-black: #111111;
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Tungsten", sans-serif;
+}
 
 @layer base {
   body {
