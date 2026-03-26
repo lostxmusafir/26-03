@@ -12,6 +12,7 @@ connectDB();
 const authRoutes = require('./routes/auth');
 const teamRoutes = require('./routes/teamRoutes');
 const tournamentRoutes = require('./routes/tournamentRoutes');
+const matchRoutes = require('./routes/matchRoutes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/tournaments', tournamentRoutes);
+app.use('/api/matches', matchRoutes);
 
 const PORT = process.env.PORT || 5000;
 
