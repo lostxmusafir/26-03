@@ -1,182 +1,98 @@
-# E-sports Tournament Management API
+# 🎮 DREAM E-SPORTS: Tournament Management Platform
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
-![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white)
+![MERN Stack](https://img.shields.io/badge/Stack-MERN-blue?style=for-the-badge)
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![MongoDB Atlas](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 
-A comprehensive RESTful API for managing E-sports tournaments, teams, matches, and player statistics for Valorant competitions. Built with Node.js, Express, and MongoDB.
+A comprehensive, full-stack E-sports tournament management platform designed for competitive gaming (inspired by Valorant). Built with the MERN stack featuring a sleek, dark-themed gaming UI and a robust, secure REST API.
 
-## 📋 Description
+## ✨ Features
 
-This API provides a complete backend solution for E-sports tournament management. It handles user authentication, team creation and management, tournament organization, match scheduling, score tracking, and competitive leaderboards. The API is designed with security best practices, input validation, pagination, and comprehensive documentation.
+### 🖥️ Frontend (React + Vite + Tailwind v4)
+* **Aggressive Gaming UI:** Custom dark mode theme (`gaming-dark`, `gaming-black`, `gaming-red`) with neon glow effects.
+* **Authentication UI:** Secure Login and Registration forms with JWT interception.
+* **Player Dashboard:** Personalized profile cards with competitive stats (Wins, Losses, K/D).
+* **Global Leaderboard:** Real-time ranking system highlighting the top 3 players.
+* **Tournament & Team Hub:** View active brackets, create 5-man rosters, and track match schedules.
+* **Responsive Design:** Fully optimized for both desktop and mobile viewing.
 
-## ✨ Key Features
+### ⚙️ Backend (Node.js + Express + MongoDB)
+* **JWT Authentication:** Secure token-based auth with route protection.
+* **Advanced Security:** Helmet, CORS, Rate Limiting, and NoSQL Injection protection.
+* **Complex Data Models:** Mongoose schemas for Users, Teams, Tournaments, and Matches.
+* **Pagination & Filtering:** Advanced API querying capabilities.
+* **Swagger API Docs:** Interactive API documentation available at `/api-docs`.
+* **Database Seeder:** Automated script to populate dummy players and admins.
 
-- **JWT Authentication** - Secure user registration and login with JSON Web Tokens
-- **Role-based Access Control** - Protected routes with middleware authentication
-- **Team Management** - Create teams, add players (5-man roster limit for Valorant)
-- **Tournament System** - Create tournaments, register teams, track status
-- **Match Scheduling** - Schedule matches between teams, update scores and winners
-- **Player Statistics** - Track wins, losses, kills, deaths, and matches played
-- **Competitive Leaderboard** - Top 10 players ranked by wins
-- **Input Validation** - Robust validation using express-validator
-- **Pagination & Filtering** - Advanced results with sorting and field selection
-- **Security Headers** - Helmet, CORS, rate limiting, NoSQL injection protection
-- **Error Handling** - Global error handler with custom error responses
-- **API Documentation** - Interactive Swagger UI at `/api-docs`
-- **Database Seeder** - Quick population with dummy data for testing
+## 🚀 Quick Start Guide
 
-## 🛠️ Tech Stack
+### 1. Prerequisites
+* Node.js (v18+ recommended)
+* MongoDB Atlas Cluster (or local MongoDB)
 
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MongoDB
-- **ODM**: Mongoose
-- **Authentication**: JWT (JSON Web Tokens)
-- **Password Hashing**: bcryptjs
-- **Validation**: express-validator
-- **Security**: Helmet, CORS, express-rate-limit, express-mongo-sanitize, xss-clean
-- **Documentation**: Swagger UI Express
-- **Development**: Nodemon
+### 2. Environment Setup
+Create a `.env` file in the root directory:
+```env
+NODE_ENV=development
+PORT=5000
+MONGO_URI=your_mongodb_connection_string_here
+JWT_SECRET=your_super_secret_jwt_key_here
+```
 
-## 🚀 Getting Started (Local Development)
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- MongoDB (local installation or MongoDB Atlas)
-- Git
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/lostxmusafir/26-03.git
-   cd 26-03/esports-tournament-api
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   
-   Create a `.env` file in the root directory:
-   ```env
-   NODE_ENV=development
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/esports-tournament
-   JWT_SECRET=your_super_secret_jwt_key_here
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-   The server will start on `http://localhost:5000`
-
-## 🔧 Environment Variables
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `NODE_ENV` | Environment mode | `development` or `production` |
-| `PORT` | Server port | `5000` |
-| `MONGO_URI` | MongoDB connection string | `mongodb://localhost:27017/esports-tournament` |
-| `JWT_SECRET` | Secret key for JWT tokens | `your_super_secret_key_min_32_chars` |
-
-## 🌱 Database Seeding
-
-Populate the database with dummy data for testing:
-
-**Import dummy users:**
+### 3. Installation
+Install dependencies for both backend and frontend:
 ```bash
+# Install backend dependencies
+npm install
+
+# Install frontend dependencies
+cd client
+npm install
+```
+
+### 4. Seed the Database (Optional but recommended)
+Populate the database with dummy e-sports players (including 'DreamAdmin'):
+```bash
+# From the root directory
 npm run data:import
 ```
 
-This creates 3 users including:
-- **DreamAdmin** (admin@dream.com / password: 123456) - Radiant rank
-- **ShadowStrike** (shadow@strike.com / password: shadow123) - Immortal rank
-- **PhantomAce** (phantom@ace.com / password: phantom123) - Diamond rank
+### 5. Run the Application
+You will need two terminals to run the full-stack environment.
 
-**Destroy all data:**
+**Terminal 1 (Backend Server):**
 ```bash
-npm run data:destroy
+# From the root directory
+npm run dev
+# Server starts on http://localhost:5000
 ```
 
-## 📚 API Documentation
-
-Interactive Swagger UI documentation is available after starting the server:
-
+**Terminal 2 (Frontend Client):**
+```bash
+# From the root/client directory
+cd client
+npm run dev
+# React app starts on http://localhost:5173 (or 5174)
 ```
-http://localhost:5000/api-docs
-```
 
-### API Endpoints
-
-#### Authentication
-- `POST /api/auth/register` - Register a new user
-- `POST /api/auth/login` - Login and get JWT token
-
-#### Users
-- `GET /api/users/me` - Get current user profile (Protected)
-- `GET /api/users/leaderboard` - Get top 10 players by wins
-
-#### Teams
-- `POST /api/teams` - Create a new team (Protected)
-- `GET /api/teams` - Get all teams
-- `POST /api/teams/:id/add-player` - Add player to team (Protected, Captain only)
-
-#### Tournaments
-- `POST /api/tournaments` - Create a new tournament (Protected)
-- `GET /api/tournaments` - Get all tournaments (with pagination)
-- `POST /api/tournaments/:id/register` - Register team for tournament (Protected)
-
-#### Matches
-- `POST /api/matches` - Schedule a new match (Protected)
-- `GET /api/matches` - Get all matches
-- `PUT /api/matches/:id/score` - Update match score and winner (Protected)
-
-## 🔒 Security Features
-
-- **Helmet**: Sets various HTTP headers for security
-- **CORS**: Cross-Origin Resource Sharing enabled
-- **Rate Limiting**: 100 requests per 10 minutes
-- **NoSQL Injection Protection**: Sanitizes user input
-- **XSS Protection**: Prevents cross-site scripting attacks
-- **Password Hashing**: bcrypt with salt rounds
-- **JWT Authentication**: Secure token-based authentication
-
-## 📁 Project Structure
-
-```
+## 📁 Project Architecture
+```text
 esports-tournament-api/
-├── _data/              # Dummy data for seeding
-├── config/
-│   └── db.js           # MongoDB connection
-├── controllers/        # Route handlers
-├── middleware/          # Custom middleware
-├── models/             # Mongoose schemas
-├── routes/             # Express routes
-├── utils/              # Utility functions
-├── index.js            # Entry point
-├── seeder.js           # Database seeder
-├── swagger.json        # API documentation
-├── package.json
-└── README.md
+├── client/                 # React Frontend (Vite)
+│   ├── src/
+│   │   ├── api/            # Axios instance & interceptors
+│   │   ├── pages/          # Home, Login, Profile, Leaderboard, etc.
+│   │   ├── App.jsx         # Main routing & Navbar
+│   │   └── index.css       # Tailwind v4 theme configuration
+├── controllers/            # Backend route logic
+├── models/                 # MongoDB Schemas
+├── routes/                 # Express API routes
+├── middleware/             # Auth & Error handling
+├── seeder.js               # DB population script
+└── index.js                # Backend entry point
 ```
-
-## 📄 License
-
-This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
-
-**Dream** - E-sports Tournament API
-
----
-
-⭐ Star this repository if you found it helpful!
+Built by **Dream** - E-sports Player & Full Stack Developer.
