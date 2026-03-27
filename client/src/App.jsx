@@ -1,16 +1,36 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
+  const navigate = useNavigate();
+  const isAuthenticated = !!localStorage.getItem('token');
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Placeholder Navbar */}
-      <nav className="border-b border-gaming-red/20 bg-gaming-black px-6 py-4">
-        <h1 className="text-2xl font-bold tracking-wider text-white">
-          DREAM <span className="text-gaming-red">E-SPORTS</span>
-        </h1>
+    <div className="min-h-screen flex flex-col bg-gaming-dark">
+      <nav className="border-b border-gaming-red/20 bg-gaming-black px-6 py-4 flex justify-between items-center">
+        <Link to="/">
+          <h1 className="text-2xl font-bold tracking-wider text-white">
+            DREAM <span className="text-gaming-red">E-SPORTS</span>
+          </h1>
+        </Link>
+        <div className="space-x-4">
+          {isAuthenticated ? (
+            <button onClick={handleLogout} className="text-gray-300 hover:text-white transition-colors">Logout</button>
+          ) : (
+            <>
+              <Link to="/login" className="text-gray-300 hover:text-white transition-colors">Login</Link>
+              <Link to="/register" className="bg-gaming-red text-white px-4 py-2 rounded font-bold hover:bg-red-600 transition-colors uppercase text-sm tracking-wider">Join</Link>
+            </>
+          )}
+        </div>
       </nav>
 
-      {/* Main Content Area */}
       <main className="flex-grow flex items-center justify-center p-6">
         <Routes>
           <Route path="/" element={
@@ -18,11 +38,18 @@ function App() {
               <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-widest text-white">
                 Dominate The <span className="text-gaming-red">Arena</span>
               </h2>
-              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                Frontend client initialized. Ready to connect to the E-sports Tournament API.
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+                Welcome back to the dashboard. More features coming soon.
               </p>
+              {!isAuthenticated && (
+                <Link to="/login" className="inline-block bg-transparent border-2 border-gaming-red text-gaming-red font-bold px-8 py-3 rounded hover:bg-gaming-red hover:text-white transition-all uppercase tracking-widest">
+                  Enter Arena
+                </Link>
+              )}
             </div>
           } />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </main>
     </div>
