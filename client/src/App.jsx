@@ -1,6 +1,8 @@
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Tournaments from './pages/Tournaments';
+import Teams from './pages/Teams';
 
 function App() {
   const navigate = useNavigate();
@@ -12,14 +14,16 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gaming-dark">
-      <nav className="border-b border-gaming-red/20 bg-gaming-black px-6 py-4 flex justify-between items-center">
+    <div className="min-h-screen flex flex-col bg-gaming-dark overflow-y-auto">
+      <nav className="border-b border-gaming-red/20 bg-gaming-black px-6 py-4 flex justify-between items-center sticky top-0 z-10">
         <Link to="/">
           <h1 className="text-2xl font-bold tracking-wider text-white">
             DREAM <span className="text-gaming-red">E-SPORTS</span>
           </h1>
         </Link>
-        <div className="space-x-4">
+        <div className="flex items-center space-x-6">
+          <Link to="/tournaments" className="text-gray-300 hover:text-white transition-colors">Tournaments</Link>
+          <Link to="/teams" className="text-gray-300 hover:text-white transition-colors">Teams</Link>
           {isAuthenticated ? (
             <button onClick={handleLogout} className="text-gray-300 hover:text-white transition-colors">Logout</button>
           ) : (
@@ -39,7 +43,7 @@ function App() {
                 Dominate The <span className="text-gaming-red">Arena</span>
               </h2>
               <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-                Welcome back to the dashboard. More features coming soon.
+                Welcome to the dashboard. More features coming soon.
               </p>
               {!isAuthenticated && (
                 <Link to="/login" className="inline-block bg-transparent border-2 border-gaming-red text-gaming-red font-bold px-8 py-3 rounded hover:bg-gaming-red hover:text-white transition-all uppercase tracking-widest">
@@ -50,6 +54,8 @@ function App() {
           } />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/tournaments" element={<Tournaments />} />
+          <Route path="/teams" element={<Teams />} />
         </Routes>
       </main>
     </div>
