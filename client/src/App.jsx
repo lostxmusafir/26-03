@@ -3,6 +3,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Tournaments from './pages/Tournaments';
 import Teams from './pages/Teams';
+import Profile from './pages/Profile';
+import Leaderboard from './pages/Leaderboard';
 
 function App() {
   const navigate = useNavigate();
@@ -24,8 +26,12 @@ function App() {
         <div className="flex items-center space-x-6">
           <Link to="/tournaments" className="text-gray-300 hover:text-white transition-colors">Tournaments</Link>
           <Link to="/teams" className="text-gray-300 hover:text-white transition-colors">Teams</Link>
+          <Link to="/leaderboard" className="text-gray-300 hover:text-white transition-colors">Leaderboard</Link>
           {isAuthenticated ? (
-            <button onClick={handleLogout} className="text-gray-300 hover:text-white transition-colors">Logout</button>
+            <>
+              <Link to="/profile" className="text-gray-300 hover:text-white transition-colors">Profile</Link>
+              <button onClick={handleLogout} className="text-gray-300 hover:text-white transition-colors">Logout</button>
+            </>
           ) : (
             <>
               <Link to="/login" className="text-gray-300 hover:text-white transition-colors">Login</Link>
@@ -56,6 +62,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/tournaments" element={<Tournaments />} />
           <Route path="/teams" element={<Teams />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </main>
     </div>
